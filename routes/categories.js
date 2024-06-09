@@ -4,7 +4,9 @@ const { category } = require('../app/models');
 
 router.get('/', async (req, res) => {
     try {
-      const categories = await category.findAll();
+      const categories = await category.findAll({
+        order: [['name', 'ASC']]
+      });
       
       res.json(categories);
     } catch (error) {
