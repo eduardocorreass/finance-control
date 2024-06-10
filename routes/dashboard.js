@@ -20,7 +20,7 @@ router.get('/month-expenses', async (req, res) => {
             },
             attributes: [
                 'category_id',
-                [sequelize.fn('sum', sequelize.col('amount')), 'total_amount']
+                [sequelize.fn('sum', sequelize.col('amount')), 'amount']
             ],
             group: ['category_id', 'category.name'],
             include: [{
@@ -29,6 +29,8 @@ router.get('/month-expenses', async (req, res) => {
                 attributes: ['name']
             }]
         });
+
+        expenses.total_amount = 
 
         res.json(expenses);
     } catch (error) {
@@ -89,7 +91,12 @@ router.get('/monthly-incomes', async (req, res) => {
             order: [['month', 'DESC']]
         });
 
-        res.json(incomes);
+        const formattedIncomes = incomes.map(income => ({
+            month: new Date(income.dataValues.month).toLocaleString('default', { month: '2-digit', year: 'numeric' }),
+            total_amount: income.dataValues.total_amount
+        }));
+
+        res.json(formattedIncomes);
     } catch (error) {
         console.error('Error while listing monthly incomes:', error);
         res.status(500).send('Error while listing monthly incomes');
