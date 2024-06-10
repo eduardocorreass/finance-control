@@ -1,8 +1,10 @@
+require('dotenv').config();
+
 module.exports = {
-  username: 'finance_prss_user',
-  password: 'dR0cZULsawuraYYO5QQV8XIfhMpvJxLN',
-  database: 'finance_prss',
-  host: 'dpg-cp1urr6n7f5s73f8d4p0-a.ohio-postgres.render.com',
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  host: process.env.DB_HOST,
   dialect: 'postgres',
   dialectOptions: {
     ssl: {
