@@ -30,8 +30,6 @@ router.get('/month-expenses', async (req, res) => {
             }]
         });
 
-        expenses.total_amount = 
-
         res.json(expenses);
     } catch (error) {
         console.error('Error while listing monthly expenses:', error);

@@ -14,7 +14,7 @@ const PORT = 3000;
 const limiter = rateLimit({
     windowMs: 10 * 60 * 1000,
     max: 100,
-    message: 'Limite de conexões atingido. Tente novamente após 15 minutos!',
+    message: 'Limite de conexões atingido. Tente novamente após 10 minutos!',
     standardHeaders: true,
     legacyHeaders: false,
 });

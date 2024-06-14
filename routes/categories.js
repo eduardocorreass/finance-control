@@ -4,7 +4,12 @@ const { category } = require('../app/models');
 
 router.get('/', async (req, res) => {
     try {
+      const type = req.query.type;
+
       const categories = await category.findAll({
+        where: {
+          type: type
+        },
         order: [['name', 'ASC']]
       });
       
