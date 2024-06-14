@@ -26,7 +26,10 @@ router.get('/month-expenses', async (req, res) => {
             include: [{
                 model: category,
                 as: 'category',
-                attributes: ['name']
+                attributes: ['name'],
+                where: {
+                    type: 'expense'
+                }
             }]
         });
 
