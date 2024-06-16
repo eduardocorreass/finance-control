@@ -18,7 +18,8 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         const expenses = await expense.findAll({
-        include: { model: category, as: 'category' }
+            include: { model: category, as: 'category' },
+            order: [['date', 'DESC']]
         });
 
         res.json(expenses);
